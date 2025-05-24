@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support | Bookinger dApp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-6 shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <img src="htt-logo.png" alt="HTT Logo" class="w-10 h-10 object-contain" />
+        <h1 class="text-2xl font-bold">Bookinger dApp</h1>
+      </div>
+      <nav class="hidden md:flex space-x-4 text-sm">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="bookings.html" class="hover:underline">Bookings</a>
+        <a href="wallet.html" class="hover:underline">Wallet</a>
+        <a href="affiliate.html" class="hover:underline">Affiliate</a>
+      </nav>
+      <button id="connectWallet" class="bg-white text-purple-700 px-4 py-2 rounded shadow-md hover:bg-gray-100 transition">
+        Connect Wallet
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto py-10 px-4">
+    <!-- FAQ Section -->
+    <section class="mb-10">
+      <h2 class="text-lg font-semibold mb-3">Frequently Asked Questions</h2>
+      <div class="bg-gray-100 p-4 rounded">
+        <p class="font-medium">❓ How do I book using HTT?</p>
+        <p class="text-sm text-gray-600 mb-4">Connect your wallet, browse bookings, and click "Book Now" to pay with HTT instantly.</p>
+
+        <p class="font-medium">❓ What if my HTT balance is incorrect?</p>
+        <p class="text-sm text-gray-600 mb-4">Ensure your wallet is connected and the token contract is correct. You can refresh the page or reach out below.</p>
+
+        <p class="font-medium">❓ How do I become an affiliate?</p>
+        <p class="text-sm text-gray-600 mb-4">Use the Affiliate tab in your dashboard. You may need admin approval before rewards are activated.</p>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section>
+      <h2 class="text-lg font-semibold mb-3">Submit a Support Request</h2>
+      <form class="bg-white shadow p-6 rounded space-y-4">
+        <input type="text" placeholder="Your Email" class="w-full border p-2 rounded" required>
+        <input type="text" placeholder="Subject" class="w-full border p-2 rounded" required>
+        <textarea rows="4" placeholder="Describe your issue..." class="w-full border p-2 rounded" required></textarea>
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-6">
+    &copy; 2025 Bookinger dApp — Powered by HTT Token
+  </footer>
+<script src="assets/js/SafeAutoConnectWallet.js"></script>
+
+
+</body>
+</html>

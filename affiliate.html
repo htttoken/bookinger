@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affiliate Panel | Bookinger dApp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-6 shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <img src="htt-logo.png" alt="HTT Logo" class="w-10 h-10 object-contain" />
+        <h1 class="text-2xl font-bold">Bookinger dApp</h1>
+      </div>
+      <nav class="hidden md:flex space-x-4 text-sm">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="bookings.html" class="hover:underline">Bookings</a>
+        <a href="wallet.html" class="hover:underline">Wallet</a>
+        <a href="affiliate.html" class="hover:underline">Affiliate</a>
+      </nav>
+      <button id="connectWallet" class="bg-white text-purple-700 px-4 py-2 rounded shadow-md hover:bg-gray-100 transition">
+        Connect Wallet
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto py-10 px-4">
+    <!-- Referral Link -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">Your Referral Link</h2>
+      <div class="flex items-center bg-white p-4 rounded shadow">
+        <input id="refLink" type="text" readonly value="https://bookinger.online/?ref=0xYourWalletAddress" class="flex-grow p-2 border rounded mr-2 text-sm">
+        <button onclick="copyLink()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Copy</button>
+      </div>
+      <p class="text-sm text-gray-500 mt-2">Share your referral link and earn HTT when users book or register.</p>
+    </section>
+
+    <!-- QR Code -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">QR Code</h2>
+      <div class="bg-white p-4 rounded shadow flex justify-center">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://bookinger.online/?ref=0xYourWalletAddress" alt="QR Code">
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">Performance Summary</h2>
+      <div class="bg-white p-4 rounded shadow text-sm">
+        <ul class="list-disc pl-5">
+          <li>Clicks: <span class="font-semibold">0</span></li>
+          <li>Registrations: <span class="font-semibold">0</span></li>
+          <li>Approved Vendors: <span class="font-semibold">0</span></li>
+          <li>HTT Earned: <span class="font-semibold">0</span> HTT</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Approval Status -->
+    <section class="mb-6">
+      <h2 class="text-lg font-semibold mb-2">Affiliate Status</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <p class="text-sm">Status: <span class="text-green-600 font-medium">Approved</span></p>
+        <p class="text-xs text-gray-500 mt-1">(If not approved, you will not earn rewards from referrals.)</p>
+      </div>
+    </section>
+  </main>
+<script src="assets/js/SafeAutoConnectWallet.js"></script>
+
+  <script>
+    function copyLink() {
+      const linkInput = document.getElementById('refLink');
+      linkInput.select();
+      document.execCommand('copy');
+      alert('Referral link copied to clipboard!');
+    }
+  </script>
+</body>
+</html>

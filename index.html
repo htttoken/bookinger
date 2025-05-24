@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookinger dApp | Hotel & Travel on HTT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <link rel="icon" type="image/png" href="/assets/img/htt-logo.png">
+</head>
+<body class="bg-white text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-6 shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <img src="htt-logo.png" alt="HTT Logo" class="w-10 h-10 object-contain" />
+        <h1 class="text-2xl font-bold">Bookinger dApp</h1>
+      </div>
+      <nav class="hidden md:flex space-x-4 text-sm">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="bookings.html" class="hover:underline">Bookings</a>
+        <a href="wallet.html" class="hover:underline">Wallet</a>
+        <a href="affiliate.html" class="hover:underline">Affiliate</a>
+      </nav>
+      <button id="connectWallet" class="bg-white text-purple-700 px-4 py-2 rounded shadow-md hover:bg-gray-100 transition">
+        Connect Wallet
+      </button>
+    </div>
+  </header>
+
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto py-12 px-4">
+    <!-- Hero Section -->
+      <section class="bg-gradient-to-r from-indigo-100 to-purple-100 py-20 text-center">
+        <h2 class="text-4xl font-bold mb-4">Welcome to Bookinger</h2>
+        <p class="text-lg text-gray-700 mb-6">Book hotels, tours, and transport with HTT — and earn crypto rewards</p>
+        <button onclick="connectWallet()" class="bg-indigo-600 text-white px-6 py-3 rounded text-lg shadow-md hover:bg-indigo-700 transition">
+          Connect Wallet to Start
+        </button>
+      </section>
+
+      <!-- How It Works -->
+      <section class="max-w-5xl mx-auto py-12 px-4">
+        <h3 class="text-2xl font-semibold text-center mb-8">How It Works</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div>
+            <div class="text-4xl mb-2">👜</div>
+            <h4 class="font-bold">1. Connect Wallet</h4>
+            <p class="text-sm">Use MetaMask or WalletConnect to sign in</p>
+          </div>
+          <div>
+            <div class="text-4xl mb-2">🏨</div>
+            <h4 class="font-bold">2. Book Services</h4>
+            <p class="text-sm">Choose from hotels, tours, and rides</p>
+          </div>
+          <div>
+            <div class="text-4xl mb-2">🎁</div>
+            <h4 class="font-bold">3. Earn Rewards</h4>
+            <p class="text-sm">Pay with HTT and earn affiliate bonuses</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits Section -->
+      <section class="bg-gray-50 py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h3 class="text-2xl font-semibold mb-6">Why Use HTT on Bookinger?</h3>
+          <ul class="grid gap-4 text-sm">
+            <li>✅ Lower Prices with HTT Discounts</li>
+            <li>✅ On-chain Affiliate Transparency</li>
+            <li>✅ Vendor Direct Payments</li>
+            <li>✅ Community-Governed Ecosystem</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Wallet Info (dynamic after connect) -->
+      <section id="walletSection" class="hidden max-w-2xl mx-auto py-10 px-4">
+        <div class="bg-purple-100 p-6 rounded shadow">
+          <p class="text-sm">Connected Wallet: <span id="walletAddress" class="text-purple-700 font-mono"></span></p>
+          <p class="text-xl font-bold mt-2">HTT Balance: <span id="httBalance">0</span> HTT</p>
+          <div class="mt-4 flex flex-wrap gap-4">
+            <a href="dashboard.html" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Go to Dashboard</a>
+            <a href="bookings.html" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Browse Bookings</a>
+            <a href="wallet.html" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">View Wallet</a>
+          </div>
+        </div>
+      </section>
+
+      <nav class="grid gap-3">
+        <a href="dashboard.html" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">Go to Dashboard</a>
+        <a href="bookings.html" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">Browse Bookings</a>
+        <a href="affiliate.html" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">Affiliate Panel</a>
+        <a href="wallet.html" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">Wallet Tools</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="bg-gray-100 text-center text-sm text-gray-500 py-6 mt-12">
+    <div class="space-x-4 mb-2">
+      <a href="verifications.html" class="text-indigo-600 hover:underline">Verification</a>
+      <a href="agreement.html" class="text-indigo-600 hover:underline">Agreement</a>
+      <a href="support.html" class="text-indigo-600 hover:underline">Support</a>
+    </div>
+    &copy; 2025 Bookinger dApp — Powered by HTT Token
+  </footer>
+
+<script src="assets/js/SafeAutoConnectWallet.js"></script>
+
+</body>
+</html>

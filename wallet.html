@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet | Bookinger dApp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-6 shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <img src="htt-logo.png" alt="HTT Logo" class="w-10 h-10 object-contain" />
+        <h1 class="text-2xl font-bold">Bookinger dApp</h1>
+      </div>
+      <nav class="hidden md:flex space-x-4 text-sm">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="bookings.html" class="hover:underline">Bookings</a>
+        <a href="wallet.html" class="hover:underline">Wallet</a>
+        <a href="affiliate.html" class="hover:underline">Affiliate</a>
+      </nav>
+      <button id="connectWallet" class="bg-white text-purple-700 px-4 py-2 rounded shadow-md hover:bg-gray-100 transition">
+        Connect Wallet
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto py-10 px-4">
+    <!-- Wallet Info -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">Wallet Details</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <p>Address: <span id="walletAddress" class="text-sm text-indigo-700 font-mono"></span></p>
+        <p class="mt-2">HTT Balance: <span id="walletBalance" class="font-bold text-indigo-800">0</span> HTT</p>
+      </div>
+    </section>
+
+    <!-- Burn Monitor -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">Burn History</h2>
+      <div class="bg-white p-4 rounded shadow text-sm">
+        <ul id="burnLog" class="list-disc pl-5 text-gray-700">
+          <li>📉 No burns recorded yet.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Swap Link -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">Swap HTT</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <p class="mb-2 text-sm">To buy or sell HTT, visit:</p>
+        <a href="https://app.uniswap.org/#/swap?outputCurrency=0xYourHTTTokenAddress" target="_blank" class="text-indigo-600 underline">Uniswap HTT/USDT Pair</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const httTokenAddress = "0xYourHTTTokenAddress"; // Replace with real address
+    const httABI = [
+      "function balanceOf(address) view returns (uint256)",
+      "function decimals() view returns (uint8)"
+    ];
+
+    async function loadWallet() {
+      if (!window.ethereum) return alert("MetaMask is required.");
+
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
+
+      document.getElementById("walletAddress").textContent = `${address.slice(0, 6)}...${address.slice(-4)}`;
+
+      const contract = new ethers.Contract(httTokenAddress, httABI, provider);
+      const balance = await contract.balanceOf(address);
+      const decimals = await contract.decimals();
+      const formatted = ethers.utils.formatUnits(balance, decimals);
+      document.getElementById("walletBalance").textContent = formatted;
+
+      // Simulated burn log (can be replaced with on-chain event logs later)
+      const burnLog = document.getElementById("burnLog");
+      burnLog.innerHTML = `<li>🧾 Burned 10 HTT on 2025-05-01 for Booking #A123</li><li>🧾 Burned 5 HTT on 2025-05-07 for Vendor Reward</li>`;
+    }
+
+    loadWallet();
+  </script>
+
+  <script src="assets/js/SafeAutoConnectWallet.js"></script>
+
+
+</body>
+</html>

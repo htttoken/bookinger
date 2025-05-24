@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verifications | Bookinger dApp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-6 shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <img src="htt-logo.png" alt="HTT Logo" class="w-10 h-10 object-contain" />
+        <h1 class="text-2xl font-bold">Bookinger dApp</h1>
+      </div>
+      <nav class="hidden md:flex space-x-4 text-sm">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="bookings.html" class="hover:underline">Bookings</a>
+        <a href="wallet.html" class="hover:underline">Wallet</a>
+        <a href="affiliate.html" class="hover:underline">Affiliate</a>
+      </nav>
+      <button id="connectWallet" class="bg-white text-purple-700 px-4 py-2 rounded shadow-md hover:bg-gray-100 transition">
+        Connect Wallet
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto py-10 px-4">
+    <!-- KYC Section -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">KYC Verification</h2>
+      <div class="bg-white p-6 rounded shadow">
+        <p class="text-sm mb-2">Upload a valid ID (Passport, National ID, or Driver’s License):</p>
+        <input type="file" class="mb-4 w-full border p-2 rounded" accept="image/*,application/pdf">
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Submit KYC</button>
+      </div>
+    </section>
+
+    <!-- Payment Account Section -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">Payment Account</h2>
+      <div class="bg-white p-6 rounded shadow">
+        <label class="text-sm block mb-1">Bank or Wallet Address for HTT Payout:</label>
+        <input type="text" placeholder="e.g. 0xYourWallet or Bank Account Info" class="w-full border p-2 rounded mb-4">
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save Account</button>
+      </div>
+    </section>
+
+    <!-- 2FA Section -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-2">Two-Factor Authentication (2FA)</h2>
+      <div class="bg-white p-6 rounded shadow">
+        <p class="text-sm mb-2">Set up 2FA using Google Authenticator or Authy:</p>
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Enable 2FA</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-6">
+    &copy; 2025 Bookinger dApp — Powered by HTT Token
+  </footer>
+<script src="assets/js/SafeAutoConnectWallet.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", async () => {
+      const walletDisplay = document.getElementById("walletDisplay");
+      const payoutAddress = document.getElementById("payoutAddress");
+
+      if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const accounts = await provider.listAccounts();
+
+        if (accounts.length > 0) {
+          const userWallet = accounts[0];
+          walletDisplay.textContent = `${userWallet.slice(0, 6)}...${userWallet.slice(-4)}`;
+          payoutAddress.value = userWallet;
+        } else {
+          walletDisplay.textContent = "Wallet not connected";
+        }
+      } else {
+        walletDisplay.textContent = "MetaMask not found";
+      }
+    });
+ </script>
+
+</body>
+</html>
